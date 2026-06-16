@@ -1,0 +1,11 @@
+{
+  "domain": "talking_countdown",
+  "name": "Talking Countdown",
+  "codeowners": ["@markhobden"],
+  "config_flow": true,
+  "documentation": "https://github.com/markhobden/homeassistant-talking-countdown",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/markhobden/homeassistant-talking-countdown/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}
