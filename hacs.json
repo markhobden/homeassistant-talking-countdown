@@ -1,0 +1,7 @@
+{
+  "name": "Talking Countdown",
+  "content_in_root": false,
+  "render_readme": true,
+  "domains": ["talking_countdown"],
+  "homeassistant": "2024.6.0"
+}
