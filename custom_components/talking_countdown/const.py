@@ -12,3 +12,4 @@ DEFAULT_MINUTES = 30
 
 SERVICE_START = "start"
 SERVICE_CANCEL = "cancel"
+SERVICE_CANCEL_ALL = "cancel_all"
