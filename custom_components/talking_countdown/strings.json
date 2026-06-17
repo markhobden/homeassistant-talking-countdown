@@ -1,3 +1,49 @@
 {
-  "title": "Talking Countdown"
+  "title": "Talking Countdown",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure Talking Countdown",
+        "description": "Set the defaults used by talking countdown services.",
+        "data": {
+          "tts_entity": "Default TTS entity",
+          "media_player": "Default media player",
+          "announcements": "Default announcement milestones",
+          "finished_message": "Default finished message",
+          "default_minutes": "Default duration in minutes"
+        },
+        "data_description": {
+          "announcements": "Comma-separated minutes remaining, for example 20,10,5,3,2,1."
+        }
+      }
+    },
+    "error": {
+      "invalid_tts_entity": "Select a TTS entity.",
+      "invalid_media_player": "Select a media player entity.",
+      "invalid_announcements": "Use comma-separated positive whole minutes.",
+      "invalid_default_minutes": "Default duration must be between 1 and 240 minutes.",
+      "empty_finished_message": "Enter a finished message."
+    },
+    "abort": {
+      "single_instance_allowed": "Talking Countdown is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Talking Countdown Options",
+        "description": "Update the defaults used by talking countdown services.",
+        "data": {
+          "tts_entity": "Default TTS entity",
+          "media_player": "Default media player",
+          "announcements": "Default announcement milestones",
+          "finished_message": "Default finished message",
+          "default_minutes": "Default duration in minutes"
+        },
+        "data_description": {
+          "announcements": "Comma-separated minutes remaining, for example 20,10,5,3,2,1."
+        }
+      }
+    }
+  }
 }

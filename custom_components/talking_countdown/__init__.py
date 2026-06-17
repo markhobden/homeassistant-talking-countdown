@@ -59,6 +59,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data[DOMAIN][entry.entry_id] = manager
     hass.data[DOMAIN]["manager"] = manager
 
+    entry.async_on_unload(entry.add_update_listener(_async_update_listener))
     _register_services_once(hass)
 
     return True
@@ -85,13 +86,21 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 def _entry_defaults(entry: ConfigEntry) -> dict[str, Any]:
     """Return defaults from a config entry."""
+    data = {**entry.data, **entry.options}
     return {
-        CONF_TTS_ENTITY: entry.data.get(CONF_TTS_ENTITY),
-        CONF_MEDIA_PLAYER: entry.data.get(CONF_MEDIA_PLAYER),
-        CONF_ANNOUNCEMENTS: entry.data.get(CONF_ANNOUNCEMENTS, DEFAULT_ANNOUNCEMENTS),
-        CONF_FINISHED_MESSAGE: entry.data.get(CONF_FINISHED_MESSAGE, DEFAULT_FINISHED_MESSAGE),
-        CONF_DEFAULT_MINUTES: entry.data.get(CONF_DEFAULT_MINUTES, DEFAULT_MINUTES),
+        CONF_TTS_ENTITY: data.get(CONF_TTS_ENTITY),
+        CONF_MEDIA_PLAYER: data.get(CONF_MEDIA_PLAYER),
+        CONF_ANNOUNCEMENTS: data.get(CONF_ANNOUNCEMENTS, DEFAULT_ANNOUNCEMENTS),
+        CONF_FINISHED_MESSAGE: data.get(CONF_FINISHED_MESSAGE, DEFAULT_FINISHED_MESSAGE),
+        CONF_DEFAULT_MINUTES: data.get(CONF_DEFAULT_MINUTES, DEFAULT_MINUTES),
     }
+
+
+async def _async_update_listener(hass: HomeAssistant, entry: ConfigEntry) -> None:
+    """Update Talking Countdown defaults when options change."""
+    manager = hass.data.get(DOMAIN, {}).get(entry.entry_id)
+    if manager is not None:
+        manager.defaults = _entry_defaults(entry)
 
 
 def _register_services_once(hass: HomeAssistant) -> None:
