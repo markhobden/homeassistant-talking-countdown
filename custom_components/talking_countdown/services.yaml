@@ -1,0 +1,59 @@
+start:
+  name: Start countdown
+  description: Start or replace a named talking countdown.
+  fields:
+    name:
+      name: Name
+      description: Timer name.
+      example: Oven
+      selector:
+        text:
+    minutes:
+      name: Minutes
+      description: Countdown duration in minutes.
+      example: 30
+      selector:
+        number:
+          min: 1
+          max: 240
+          step: 1
+          mode: box
+    announcements:
+      name: Announcements
+      description: Comma-separated minutes remaining announcements.
+      example: "20,10,5,3,2,1"
+      selector:
+        text:
+    media_player:
+      name: Media player
+      description: Optional media player override.
+      selector:
+        entity:
+          domain: media_player
+    tts_entity:
+      name: TTS entity
+      description: Optional TTS entity override.
+      selector:
+        entity:
+          domain: tts
+    finished_message:
+      name: Finished message
+      description: Optional finished message override.
+      example: Time is up
+      selector:
+        text:
+
+cancel:
+  name: Cancel countdown
+  description: Cancel a named talking countdown.
+  fields:
+    name:
+      name: Name
+      description: Timer name.
+      example: Oven
+      selector:
+        text:
+
+cancel_all:
+  name: Cancel all countdowns
+  description: Cancel all active talking countdowns.
